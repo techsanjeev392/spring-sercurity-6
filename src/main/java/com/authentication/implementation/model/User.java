@@ -1,16 +1,33 @@
 package com.authentication.implementation.model;
 
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Table(name= "USER")
-@Getter
-@Setter
+import java.util.Set;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "users") // To avoid conflict with 'user' reserved keyword
 public class User {
 
-	private Integer userId;
-	private String userName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String username;
+	private String password;
+	private String email;
+
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Cart cart;
+
+	@ManyToMany
+	@JoinTable(
+			name = "user_roles",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id")
+	)
+	private Set<Role> roles;
 }
