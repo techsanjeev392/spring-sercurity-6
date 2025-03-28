@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-@Service
+@Component
 public class DataSeeder {
 
 	@Autowired
@@ -23,7 +23,7 @@ public class DataSeeder {
 		User john = new User();
 		john.setId(1);
 		john.setUsername("john_doe");
-		john.setPassword("password123");
+//		john.setPassword("password123");
 		john.setEmail("john@example.com");
 
 		User jane = new User();
@@ -33,6 +33,21 @@ public class DataSeeder {
 		jane.setEmail("jane@example.com");
 		try {
 			userRepository.saveAll(Set.of(john, jane));
+
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	@Transactional
+	public void addUserToUserTable(User user) {
+		try {
+			User newUser = new User();
+
+			var res = userRepository.save(user);
+
+			System.out.println("ssssssssssssssssssssss: "+res);
 
 		}catch (Exception e){
 			System.out.println(e.getMessage());
