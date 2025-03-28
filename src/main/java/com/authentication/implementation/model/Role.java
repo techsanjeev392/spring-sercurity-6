@@ -5,15 +5,15 @@ import lombok.*;
 
 import javax.lang.model.element.Name;
 
-@Entity(name = "role")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Getter
+@Setter
+@Table(name="ROLE")
 public class Role {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@Column(name = "role_name")
 	private String roleName;

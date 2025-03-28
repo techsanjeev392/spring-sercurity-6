@@ -3,15 +3,15 @@ package com.authentication.implementation.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "cart_product")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Getter
+@Setter
+@Table(name="CART_PRODUCT")
 public class CartProduct {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name = "cart_id")

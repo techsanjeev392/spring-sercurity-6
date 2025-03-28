@@ -6,15 +6,14 @@ import lombok.*;
 import java.util.Set;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "users") // To avoid conflict with 'user' reserved keyword
+@Getter
+@Setter
+@Table(name = "USERS") // To avoid conflict with 'user' reserved keyword
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	private String username;
 	private String password;
