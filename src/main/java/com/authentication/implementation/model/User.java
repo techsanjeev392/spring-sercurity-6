@@ -1,25 +1,32 @@
 package com.authentication.implementation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "USERS") // To avoid conflict with 'user' reserved keyword
+@Table(name = "USERS")
 public class User {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String username;
+
+	@JsonIgnore  // Prevents password serialization
 	private String password;
+
 	private String email;
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Cart cart;
 
 	@ManyToMany

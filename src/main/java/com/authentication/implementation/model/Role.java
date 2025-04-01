@@ -1,18 +1,17 @@
 package com.authentication.implementation.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import javax.lang.model.element.Name;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@Table(name="ROLE")
+@Table(name = "ROLE")
 public class Role {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "role_name")
